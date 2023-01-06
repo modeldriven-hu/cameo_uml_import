@@ -1,7 +1,7 @@
 package gettingstarted;
 
 import hu.modeldriven.uml.magicdraw.MagicDrawModel;
-import hu.modeldriven.uml.magicdraw.MagicDrawModelUtils;
+import hu.modeldriven.uml.utils.UmlUtils;
 import org.eclipse.uml2.uml.Model;
 
 import java.io.File;
@@ -16,7 +16,7 @@ public class LoadUML2 {
         var members = model.getMembers();
 
         for (var namedElement : members) {
-            System.out.println(MagicDrawModelUtils.getXmiId(namedElement));
+            System.out.println(UmlUtils.getXmiId(namedElement));
             System.out.println(namedElement.getName());
         }
     }
