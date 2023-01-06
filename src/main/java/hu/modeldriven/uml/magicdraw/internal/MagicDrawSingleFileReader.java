@@ -4,7 +4,10 @@ import hu.modeldriven.uml.magicdraw.InvalidModelFormatException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
 import java.io.File;
@@ -36,11 +39,16 @@ public class MagicDrawSingleFileReader implements MagicDrawModelReader {
         // Read file
         var resource = resourceSet.getResource(uri, true);
 
-        var contents = resource.getContents();
-        var firstObject = contents.get(0);
+        var root = UML2Util.load(resourceSet, uri, UMLPackage.Literals.PACKAGE);
 
-        if (firstObject instanceof Model) {
-            return (Model)firstObject;
+        if (resource instanceof UMLResource) {
+            var umlResource = (UMLResource)resource;
+            var contents = umlResource.getContents();
+            var firstObject = contents.get(0);
+
+            if (firstObject instanceof Model) {
+                return (Model) firstObject;
+            }
         }
 
         throw new InvalidModelFormatException();

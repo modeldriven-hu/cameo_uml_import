@@ -1,4 +1,4 @@
-package gettingstarted;
+package hu.modeldriven.uml;
 
 import hu.modeldriven.uml.magicdraw.MagicDrawModel;
 import hu.modeldriven.uml.utils.UmlUtils;
@@ -6,7 +6,7 @@ import org.eclipse.uml2.uml.Model;
 
 import java.io.File;
 
-public class LoadUML2 {
+public class TestLoadUMLFile {
 
     public static void processModel(Model model) {
 
@@ -22,7 +22,7 @@ public class LoadUML2 {
     }
 
     public static void main(String[] args) throws Exception {
-        var model = MagicDrawModel.fromSingleFile(new File("./src/test/resources/ExtendedPO2.uml")).open();
+        var model = MagicDrawModel.fromSingleFile(new File("./src/test/resources/SingleBDDMagicDrawExported.uml")).open();
         processModel(model);
     }
 
